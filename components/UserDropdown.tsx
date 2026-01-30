@@ -20,14 +20,17 @@ import {
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 import {Button} from "@/components/ui/button";
 
-const UserDropdown = () => {
+// LIB
+import {signOut} from "@/lib/actions/auth.actions";
+
+const UserDropdown = ({user}: { user: User }) => {
     const router = useRouter();
 
+    // FUNCTION
     const handleSignOut = async () => {
+        await signOut();
         router.push("/sign-in");
     };
-
-    const user = {name: "Sam", email: "sam@email.com"};
 
     return (
         <DropdownMenu>
