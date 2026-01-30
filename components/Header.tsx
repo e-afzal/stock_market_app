@@ -5,7 +5,7 @@ import Image from "next/image";
 import NavItems from "@/components/NavItems";
 import UserDropdown from "@/components/UserDropdown";
 
-export default function Header(){
+export default function Header({user}: { user: User }){
     return (
         <header className="sticky top-0 header">
             <div className="container header-wrapper">
@@ -17,7 +17,7 @@ export default function Header(){
                     <NavItems/>
                 </nav>
                 {/* User dropdown*/}
-                <UserDropdown/>
+                <UserDropdown user={user}/>
             </div>
         </header>
     );
