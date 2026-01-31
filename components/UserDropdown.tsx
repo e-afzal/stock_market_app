@@ -1,14 +1,12 @@
 "use client";
 
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
 
 // ASSET IMPORT
-import {LogOut} from "lucide-react";
+import { LogOut } from "lucide-react";
 
-// LOCAL COMPONENT
-import NavItems from "@/components/NavItems";
-
-// THIRD PARTY COMPONENTS
+// THIRD PARTY COMPONENT
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -17,16 +15,15 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
-import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
-import {Button} from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
+import NavItems from "@/components/NavItems";
 
-// LIB
-import {signOut} from "@/lib/actions/auth.actions";
+// ACTION
+import { signOut } from "@/lib/actions/auth.actions";
 
-const UserDropdown = ({user}: { user: User }) => {
+const UserDropdown = ({ user, initialStocks }: { user: User, initialStocks: StockWithWatchlistStatus[] }) => {
     const router = useRouter();
 
-    // FUNCTION
     const handleSignOut = async () => {
         await signOut();
         router.push("/sign-in");
@@ -73,7 +70,7 @@ const UserDropdown = ({user}: { user: User }) => {
                 </DropdownMenuItem>
                 <DropdownMenuSeparator className="hidden sm:block bg-gray-600"/>
                 <nav className="sm:hidden">
-                    <NavItems/>
+                    <NavItems initialStocks={initialStocks}/>
                 </nav>
             </DropdownMenuContent>
         </DropdownMenu>
